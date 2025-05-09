@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, Zhira</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/icon.jpeg" type="image/x-icon" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎉 Happy Birthday, Zhira 🎂</h1>
+      <p>Barakallah fii umrik, Semoga sehat selaluuu.</p>
+    </header>
+    <section class="message">
+      <h2>kalau mau lihat, buka yaa, hehe</h2>
+      <button id="openMessage" class="open-btn">Buka Pesan</button>
+      <div id="hiddenMessage" class="hidden">
+        <p>
+          Semoga segala hal yang kamu impikan tercapai, dan kamu selalu terlindungi dari
+          segala hal-hal buruk, yaa misalkan aku hal buruk itu, semoga kamu juga terlindungi dari aku :D
+        </p>
+      </div>
+    </section>
+
+    <section class="countdown">
+      <h2>Anak kecik sudah 17 tahun😮🫢</h2>
+      <div id="timerText" class="timer-text"></div>
+    </section>
+
+    <section class="navigation">
+      <a href="prayer schedule.html" class="open-btn">Next</a>
+    </section>
+
+    <footer>
+      <h2 class="title-with-image">
+        - reza
+        <img src="images/cattie.jpeg" alt="Kucing Lucu" width="50" height="50"/>
+      </h2>
+    </footer>
+  </div>
+
+  <!-- Audio (tanpa autoplay langsung) -->
+  <audio id="birthdayMusic" src="audio/Serta Mulia - Sal Priadi.mp3"></audio>
+
+  <!-- Pop-up Utama -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <h2>Halloooww:3</h2>
+      <p>Selamat ulang tahun, Zhira. aku ada iseng buat website ini, kamu nak lihat tak?</p>
+      <div class="popup-actions">
+        <button id="enterSite" class="action-btn">Mauuu</button>
+        <button id="exitSite" class="no-btn">Tak nakk</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pop-up Konfirmasi Keluar -->
+  <div class="popup-overlay" id="confirmOverlay">
+    <div class="popup-box">
+      <h2>Yahhh, kok begituu:(</h2>
+      <p>Bener nih tak nakk?</p>
+      <div class="popup-actions">
+        <button id="confirmYes" class="action-btn">Iyaa</button>
+        <button id="confirmNo" class="no-btn">Tidak dehh, bercanda</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

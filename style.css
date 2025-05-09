@@ -1,0 +1,553 @@
+/* style.css */
+/* (Semuanya tetap sama seperti sebelumnya, tidak ada perubahan) */
+:root {
+  --clr-primary: #6a4c93;
+  --clr-primary-light: #6a4bb1;
+  --clr-primary-dark: #5a3c83;
+  --clr-secondary: #ff6f91;
+  --clr-bg: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  --clr-text: #333;
+  --clr-white: #fff;
+  --fs-title: 2rem;
+  --fs-subtitle: 1.2rem;
+  --fs-body: 1rem;
+  --transition: 0.3s ease;
+  --transition-long: 0.5s ease;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+}
+
+/* Animasi “pop” pada tombol */
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+button.action-btn,
+button.no-btn {
+  transition: transform 0.2s ease;
+}
+
+button.action-btn.clicked,
+button.no-btn.clicked {
+  animation: pop 0.4s ease;
+}
+
+.header h1 {
+  color: pink;
+}
+  /* ===== Base Styles ===== */
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    min-height: 100vh;
+    padding: 1rem;
+    margin: 0;
+  }
+  
+  /* ===== Container ===== */
+  .container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--clr-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    text-align: center;
+    animation: fadeIn 1s ease;
+  }
+
+  /* ===== Header ===== */
+  header {
+    padding: 2rem 1rem;
+    background: var(--clr-white);
+  }
+
+  header h1 {
+    font-size: var(--fs-title);
+    color: var(--clr-secondary);
+    margin-bottom: .5rem;
+    animation: pop 0.5s ease;
+  }
+
+  header p {
+    font-size: var(--fs-subtitle);
+    color: var(--clr-text);
+  }
+
+  /* ===== Prayer Times ===== */
+  .prayer-times h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--clr-primary);
+    margin-bottom: 25px;
+  }
+
+  .prayer-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .prayer-table th,
+  .prayer-table td {
+    padding: 14px 12px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+
+  .prayer-table th {
+    background-color: var(--clr-primary-light);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .prayer-table tbody tr:nth-child(even) {
+    background-color: #f3efff;
+  }
+
+  .prayer-table tbody tr:nth-child(odd) {
+    background-color: var(--clr-white);
+  }
+
+  .prayer-table td:hover {
+    background-color: #dbcfff;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== Prayer Detail Overlay ===== */
+  .prayer-detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f0ff;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-long);
+    clip-path: circle(0% at center);
+    transition: clip-path var(--transition-long);
+  }
+
+  .prayer-detail-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .prayer-detail-content {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: var(--clr-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    text-align: center;
+  }
+
+  .close-detail-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--clr-primary);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .close-detail-btn:hover {
+    background-color: #eee5ff;
+    transform: rotate(90deg);
+  }
+
+  .prayer-info h2 {
+    color: var(--clr-primary);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+
+  .prayer-time-large {
+    font-size: 3.5rem;
+    color: var(--clr-secondary);
+    font-weight: bold;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+  }
+
+  .prayer-date {
+    font-size: 1.5rem;
+    color: var(--clr-primary-light);
+    margin-bottom: 30px;
+  }
+
+  .prayer-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--clr-text);
+    text-align: left;
+    background-color: #f9f5ff;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid var(--clr-primary);
+    margin: 20px 0;
+  }
+
+  /* ===== Buttons ===== */
+  .open-btn {
+    padding: 0.5rem 1rem;
+    background: var(--clr-primary);
+    color: var(--clr-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background var(--transition);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .open-btn:hover {
+    background: var(--clr-primary-dark);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    padding: 1rem;
+    background: var(--clr-white);
+    margin-top: 1rem;
+  }
+
+  /* ===== Common Sections ===== */
+  .message, .countdown, .navigation {
+    padding: 1.5rem 1rem;
+  }
+
+  .message h2, .countdown h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .message h2 {
+    color: var(--clr-secondary);
+  }
+
+  .countdown h2 {
+    color: var(--clr-primary);
+    font-size: 1.1rem;
+  }
+
+  .message p {
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  .countdown {
+    background: var(--clr-white);
+  }
+
+  .timer-text {
+    font-family: cambria, serif;
+    font-size: 1.6rem;
+    color: var(--clr-text);
+    margin-top: 0.5rem;
+  }
+
+  .popup-content.feminine {
+    position: relative;
+    background: #fff0f6;
+    border: 2px solid #ffc0cb;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    max-width: 320px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(255, 192, 203, 0.5);
+    animation: bounceIn 0.6s ease-out;
+  }
+
+  .popup-content.feminine h2 {
+    margin-bottom: 0.5rem;
+    color: #d6336c;
+    font-size: 1.6rem;
+  }
+
+  .popup-content.feminine p {
+    margin-bottom: 1rem;
+    color: #555;
+    font-size: 1rem;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    color: #d6336c;
+    cursor: pointer;
+  }
+
+  .action-btn {
+    padding: 0.6rem 1.2rem;
+    background: #e83e8c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform var(--transition);
+  }
+
+  .action-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .no-btn {
+    background: transparent;
+    color: #d6336c;
+    border: 2px solid #d6336c;
+  }
+
+  .no-btn:hover {
+    background: #f8d7da;
+    border-color: #c82333;
+    color: #c82333;
+  }
+
+  .popup-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .container.blurred {
+    filter: blur(4px);
+    pointer-events: none;
+  }
+
+  /* ===== Utility Classes ===== */
+  .hidden {
+    display: none;
+  }
+
+  .title-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .side-image {
+    width: 40px;
+    height: auto;
+    border-radius: 8px;
+    transform: translateY(2px);
+  }
+
+  /* ===== Animations ===== */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    80% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* ===== Responsive Styles ===== */
+  @media (max-width: 800px) {
+    .prayer-table th, .prayer-table td {
+      font-size: 0.85rem;
+      padding: 10px;
+    }
+
+    .prayer-times h2 {
+      font-size: 1.5rem;
+    }
+    
+    .container {
+      padding: 15px;
+    }
+    
+    .prayer-time-large {
+      font-size: 2.5rem;
+    }
+    
+    .prayer-date {
+      font-size: 1.2rem;
+    }
+    
+    .prayer-description {
+      font-size: 1rem;
+      padding: 15px;
+    }
+  }
+
+/* Perbaikan untuk popup-overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Styling untuk popup content */
+.popup-box {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: center;
+  max-width: 400px;
+  animation: popupFade 0.4s ease-out;
+}
+
+.popup-box h2 {
+  color: #d6336c;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+.popup-box p {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 1rem;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #ff4081;
+  transform: scale(1.05);
+}
+
+.no-btn {
+  background: transparent;
+  color: #d6336c;
+  border: 2px solid #d6336c;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.no-btn:hover {
+  background: #f8d7da;
+  border-color: #c82333;
+  color: #c82333;
+}
+
+@keyframes popupFade {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Untuk efek blur pada container */
+.container.blurred {
+  filter: blur(4px);
+  pointer-events: none;
+  transition: filter 0.3s ease;
+}
+
+/* class untuk membuat tombol center dengan jarak */
+.nav-footer.centered {
+  justify-content: center; /* center secara horizontal */
+  gap: 1rem;               /* jarak antar tombol */
+}
+.nav-footer {
+  display: flex;
+  justify-content: space-between; /* default untuk dua tombol di tabel periodik */
+  padding: 1rem;
+  background: var(--clr-white);
+}
